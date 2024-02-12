@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Feeding = () => {
   return (
-    <div>Feeding</div>
-  )
-}
+    <div>
+      <h1>Feeding</h1>
+    </div>
+  );
+};
 
-export default Feeding
+export default Feeding;

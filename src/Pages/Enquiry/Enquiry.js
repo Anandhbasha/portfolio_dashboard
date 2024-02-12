@@ -1,10 +1,12 @@
-import React from 'react'
-import './Enquiry.css'
+import React from "react";
+import "./Enquiry.css";
 
 const Enquiry = () => {
   return (
-    <div>Enquiry</div>
-  )
-}
+    <div>
+      <h1>Enquiry</h1>
+    </div>
+  );
+};
 
-export default Enquiry
+export default Enquiry;

@@ -1,0 +1,51 @@
+.top_components{
+    display: flex;
+}
+.home{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    row-gap: 10px;
+}
+.top_components{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+.top_components a{
+    color: white;
+}
+.feed_components{
+    padding: 15px 40px;
+    background-color: rgb(39, 31, 31);
+    border-radius: 10px;
+}
+.feed_components:hover{
+    background-color: rgb(95, 34, 114);
+}
+.products_components:hover{
+    background-color: rgb(95, 34, 114);
+}
+.products_components{
+    padding: 15px 40px;
+    background-color: rgb(39, 31, 31);
+    border-radius: 10px;
+}
+.chart_page{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 25px;
+    color: white;
+}
+.sales_chart{
+    width: 500px;
+}
+.sales_chart:hover{
+    border: 1px solid rgb(158 71 187 / 96%);
+}
