@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Table.css";
+import Dropdown from "../Dropdown/Dropdown";
 
 const Table = () => {
+  const [values, setValues] = useState(50);
+  const dropdown_values = [
+    {
+      value: 10,
+    },
+    {
+      value: 50,
+    },
+    {
+      value: 100,
+    },
+  ];
+
+  const handleChange = ({ target: { value } }) => {
+    setValues(value);
+  };
+
   return (
     <div className="table_container">
       <div className="table_top">
@@ -10,29 +28,11 @@ const Table = () => {
       <div className="table_middle">
         <div className="left_side">
           <label>Show</label>
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenu2"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              10
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <button class="dropdown-item" type="button">
-                10
-              </button>
-              <button class="dropdown-item" type="button">
-                50
-              </button>
-              <button class="dropdown-item" type="button">
-                100
-              </button>
-            </div>
-          </div>
+          <Dropdown
+            values={values}
+            handleChange={handleChange}
+            dropdown_values={dropdown_values}
+          />
           entries
         </div>
         <div className="right_side">
