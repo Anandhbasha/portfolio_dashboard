@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import "./Table.css";
 import Dropdown from "../Dropdown/Dropdown";
 
-const Table = () => {
-  const [values, setValues] = useState(50);
+const Table = ({ data, table_heading }) => {
+  console.log(data);
+  const [values, setValues] = useState(2);
   const dropdown_values = [
     {
-      value: 10,
+      value: 2,
     },
     {
-      value: 50,
+      value: 5,
     },
     {
-      value: 100,
+      value: 1,
     },
   ];
 
@@ -22,9 +23,6 @@ const Table = () => {
 
   return (
     <div className="table_container">
-      <div className="table_top">
-        <h3>User Details</h3>
-      </div>
       <div className="table_middle">
         <div className="left_side">
           <label>Show</label>
@@ -42,32 +40,32 @@ const Table = () => {
       </div>
       <table class="table table-striped table-dark">
         <thead>
-          <tr>
-            <th scope="col">S.No</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
+          {data.slice(0, 1).map((item) => {
+            console.log("Heading data-->>>", item);
+            return (
+              <tr>
+                {Object.keys(item).map((heading) => {
+                  return (
+                    <th style={{ textTransform: "uppercase" }}>{heading}</th>
+                  );
+                })}
+              </tr>
+            );
+          })}
+          {/* {table_heading.map((heading) => {
+              return <th scope="col">{heading}</th>;
+            })} */}
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {data.slice(0, values).map((item) => {
+            return (
+              <tr>
+                {Object.values(item).map((datas, index) => {
+                  return <td>{datas}</td>;
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
