@@ -3,7 +3,7 @@ import "./Table.css";
 import Dropdown from "../Dropdown/Dropdown";
 
 const Table = ({ data }) => {
-  const [show_data, setShow_data] = useState(2);
+  const [show_data, setShow_data] = useState(5);
   const dropdown_values = [
     {
       value: 2,
@@ -23,7 +23,7 @@ const Table = ({ data }) => {
   var maxValue = 0;
   var maxValueIndex = 0;
 
-  data.forEach((item, idx) => {
+  data?.forEach((item, idx) => {
     const numKeys = Object.keys(item).length;
 
     if (numKeys > maxValue) {
@@ -32,7 +32,7 @@ const Table = ({ data }) => {
     }
   });
 
-  let table_heading = data.find((_, index) => index === maxValueIndex);
+  let table_heading = data?.find((_, index) => index === maxValueIndex);
   return (
     <div className="table_container">
       <div className="table_middle">
@@ -53,16 +53,16 @@ const Table = ({ data }) => {
       <table class="table table-striped table-dark">
         <thead>
           <tr>
-            {Object.keys(table_heading).map((heading) => {
+            {Object.keys(table_heading)?.map((heading) => {
               return <th style={{ textTransform: "uppercase" }}>{heading}</th>;
             })}
           </tr>
         </thead>
         <tbody>
-          {data.slice(0, show_data).map((rowdata, rowindex) => {
+          {data?.slice(0, show_data)?.map((rowdata, rowindex) => {
             return (
               <tr key={rowindex}>
-                {Object.keys(table_heading).map((head, colindex) => {
+                {Object.keys(table_heading)?.map((head, colindex) => {
                   return (
                     <td key={colindex}>
                       {!rowdata[head] ? "-" : rowdata[head]}

@@ -1,45 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Enquiry.css";
 import Table from "../../Components/Table/Table";
+import axios from "axios";
 
 const Enquiry = () => {
-  const [enquiry_list, setEnquiry_list] = useState([
-    {
-      id: 1,
-      name: "Web Template",
-      email: "abc@gmail.com",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Web Template",
-      email: "abc@gmail.com",
-    },
-    {
-      id: 3,
-      name: "Web Template",
-      email: "abc@gmail.com",
-      quantity: 1,
-    },
-    {
-      id: 4,
-      name: "Web Template",
-      email: "abc@gmail.com",
-      quantity: 1,
-    },
-    {
-      id: 5,
-      name: "Web Template",
-      email: "abc@gmail.com",
-      quantity: 1,
-    },
-    {
-      id: 6,
-      name: "Web Template",
-      email: "abc@gmail.com",
-      quantity: 1,
-    },
-  ]);
+  const [enquiry_list, setEnquiry_list] = useState([{}]);
+  useEffect(() => {
+    const get_Enquirydata = async () => {
+      const { data } = await axios.get(``);
+      console.log(data);
+      setEnquiry_list(data?.data);
+    };
+
+    get_Enquirydata();
+  }, []);
 
   return (
     <div>
