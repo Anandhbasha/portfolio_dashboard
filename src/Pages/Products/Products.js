@@ -26,6 +26,8 @@ const Products = () => {
       quantity: 1,
       isStock: "true",
       ratings: 4,
+      No_of_downloads: 50,
+      no_viewes: 60000,
     },
     {
       id: 4,
@@ -50,6 +52,7 @@ const Products = () => {
       quantity: 1,
       isStock: "true",
       ratings: 4,
+      no_viewes: "50k",
     },
   ]);
 

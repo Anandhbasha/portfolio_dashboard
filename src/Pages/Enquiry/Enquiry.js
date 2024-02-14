@@ -14,7 +14,6 @@ const Enquiry = () => {
       id: 2,
       name: "Web Template",
       email: "abc@gmail.com",
-      quantity: 1,
     },
     {
       id: 3,
