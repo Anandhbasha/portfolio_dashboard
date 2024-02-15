@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "../../Components/Table/Table";
 import axios from "axios";
+import { backendapi } from "../../App";
 
 const Products = () => {
   const [products_list, setProducts_list] = useState([{}]);
@@ -8,7 +9,7 @@ const Products = () => {
     const get_productlist = async () => {
       const {
         data: { data },
-      } = await axios.get(`http://localhost:3001/products`);
+      } = await axios.get(`${backendapi}/products`);
 
       setProducts_list(data);
     };

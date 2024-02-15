@@ -16,9 +16,11 @@
     /* color: black; */
     background-color: rgb(95, 34, 114);
 }
+.sidebar_menu .active{
+    background-color: rgb(95, 34, 114);
+}
 .sidebar_menu li{
-    list-style-type: none;
-    
+    list-style-type: none;    
     border-radius: 5px;
     color: white;
     /* margin: 4px; */

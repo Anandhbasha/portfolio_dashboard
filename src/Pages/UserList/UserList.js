@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Table from "../../Components/Table/Table";
 import axios from "axios";
+import { backendapi } from "../../App";
 
 const UserList = () => {
   const [user_li, setUser_list] = useState([{}]);
 
   useEffect(() => {
     const get_userdata = async () => {
-      const { data } = await axios.get(`http://localhost:3001/users`);
+      const { data } = await axios.get(`${backendapi}/users`);
       setUser_list(data?.data);
     };
 

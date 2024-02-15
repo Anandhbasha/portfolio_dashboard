@@ -10,6 +10,8 @@ import Enquiry from "./Pages/Enquiry/Enquiry";
 import Feeding from "./Pages/Feeding/Feeding";
 import Products from "./Pages/Products/Products";
 
+export const backendapi = "http://44.211.166.253:8080";
+
 const App = () => {
   return (
     <BrowserRouter>

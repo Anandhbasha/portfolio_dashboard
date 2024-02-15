@@ -1,30 +1,69 @@
+const connection = require('./connection.js')
+const jwtToken = require('./token.js')
 const Razorpay = require('razorpay')
 require('dotenv').config()
+
 const razorpayInstance = new Razorpay({
   key_id: process.env.key_id,
   key_secret: process.env.key_secret,
 })
 
 function create_order(req, res) {
-  let amount = parseInt(req.body.amount * 100, 10)
-  razorpayInstance.orders.create({ amount, currency: "INR", payment_capture: 1 }, (err, data) => {
-      if (data) res.status(200).json({ status: 200, data: data })
-      else res.status(400).json({ status: 400, error: err })
-  })
+  const amount = parseInt(req.body.amount * 100, 10);
+  const currency = "INR";
+  const payment_capture = 1;
+  const receipt = 'Testing'
+
+  razorpayInstance.orders.create({ amount, currency, payment_capture, receipt }, (err, data) => {
+    if (data) {
+      connection.query(`INSERT INTO orders (order_id, amount, currency, receipt, payment_capture) VALUES (?, ?, ?, ?,?)`,
+        [data.id, amount, currency, receipt, Date.now()], (err, data) => {
+          if (err) throw err;
+          res.send({ status: true, message: 'Payment details inserted success', data });
+        });
+    } else {
+      res.json({ err });
+    }
+  });
 }
 
-function fetch_order(req, res){
-  let order_id = req.body.order_id
-  razorpayInstance.orders.fetch(order_id, (err, data)=>{
-    if (data && data.status == "paid") {
-      connection.query('INSERT INTO `purchase` SET ?', data, (error) => {
-        if (error) return res.status(500).json({ status: 500, message: error })
-        else return res.status(200).json({ status: 200, message: 'Payment Completed Successfully' })
+function fetch_order(req, res) {
+  // razorpayInstance.orders.fetch("order_NYkG7UCSDJ64Qh", (err, data) => {
+  //   // if (data) res.json({ data })
+  //   // else res.json({ err })
+  //   if (data) {
+  //     connection.query(`SELECT * FROM orders`, [data], (err, result) => {
+  //       if (err) throw err;
+
+  //       res.send({ status: true, message: 'Success', result });
+  //     });
+  //   } else {
+  //     res.send({ status: false, message: err });
+  //   }
+  // })
+
+  connection.query('SELECT * FROM orders', (err, results) => {
+    if (err) {
+      res.status(500).json({ status: false, message: 'Error fetching payments from database', error: err });
+    } else {
+      res.status(200).json({ status: true, message: 'Success', results });
+    }
+  });
+
+}
+
+function fetch_single_order(req, res) {
+  const { order_id } = req.params;
+  razorpayInstance.orders.fetch(order_id, (err, razorpayData) => {
+    if (razorpayData) {
+      connection.query(`SELECT * FROM orders`, (err, orderData) => {
+        if (err) throw err;
+        res.send({ status: true, message: 'Success', data: orderData });
       });
     } else {
-      res.status(400).json({ status: 400, error: err })
+      res.json({ err });
     }
-  })
+  });
 }
 
-module.exports = { create_order, fetch_order }
+module.exports = { create_order, fetch_order, fetch_single_order }
