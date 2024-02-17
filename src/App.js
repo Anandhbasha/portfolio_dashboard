@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Navbar from "./Containers/Navbar/Navbar";
 import Sidebar from "./Containers/Sidebar/Sidebar";
@@ -14,7 +14,7 @@ export const backendapi = "http://44.211.166.253:8080";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="overall_container">
         <div className="dashboard_content_section">
           <div className="sidebar">
@@ -32,7 +32,7 @@ const App = () => {
           </div>
         </div>
       </div>
-    </BrowserRouter>
+    </Router>
   );
 };
 

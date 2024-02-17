@@ -10,15 +10,19 @@ const Products = () => {
       const {
         data: { data },
       } = await axios.get(`${backendapi}/products`);
+      // } = await axios.get(`http://localhost:8080/products`);
 
       setProducts_list(data);
     };
 
     get_productlist();
   }, []);
+
+  const newData = products_list.map(({ description, ...rest }) => rest);
+
   return (
     <div>
-      <Table data={products_list} />
+      <Table data={newData} />
     </div>
   );
 };

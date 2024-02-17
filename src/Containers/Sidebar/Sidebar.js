@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import { Link, useParams } from "react-router-dom";
 
 const Sidebar = () => {
-  const [activeTab, setActiveTab] = useState("Dashboard");
+  const { params } = useParams();
 
-  const tabName = useParams();
+  console.log("aaa--->", params);
 
-  useEffect(() => {
-    setActiveTab(tabName);
-  }, []);
+  const [activeTab, setActiveTab] = useState("");
+  // setActiveTab(tabName);
 
   function calling(tab) {
     setActiveTab(tab);
@@ -29,9 +28,9 @@ const Sidebar = () => {
       </li>
       <li
         onClick={() => {
-          calling("User_list");
+          calling("UserList");
         }}
-        className={`${activeTab == "User_list" && "active"}`}
+        className={`${activeTab == "UserList" && "active"}`}
       >
         <Link to={"/UserList"}>
           <i class="fa-solid fa-user"></i>

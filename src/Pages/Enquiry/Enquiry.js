@@ -9,10 +9,11 @@ const Enquiry = () => {
   useEffect(() => {
     const get_Enquirydata = async () => {
       const {
-        data: { result },
+        data: { data },
+        // } = await axios.get(`http://localhost:8080/get_contacts`);
       } = await axios.get(`${backendapi}/get_contacts`);
 
-      setEnquiry_list(result);
+      setEnquiry_list(data);
     };
 
     get_Enquirydata();
