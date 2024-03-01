@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Table from "../../Components/Table/Table";
 import "./Feeding.css";
+import axios from "axios";
+import { backendapi } from "../../App";
 
 const Feeding = () => {
   const [feedingInputs, setFeedingInputs] = useState({
@@ -9,23 +11,71 @@ const Feeding = () => {
     price: "",
     link: "",
     category: "",
-    zipfile: "",
   });
+  const [imageUpload, setImageUpload] = useState();
+  const [zipUpload, setZipUpload] = useState();
+
+  const handleImageUpload = (e) => {
+    let file = e.target.files[0];
+
+    // setImageUpload(URL.createObjectURL(file));
+    setImageUpload(file);
+  };
+
+  const handlezipUpload = (e) => {
+    let file = e.target.files[0];
+
+    // setZipUpload(URL.createObjectURL(file));
+    setZipUpload(file);
+  };
 
   const handleChange = ({ target: { value, name } }) => {
     setFeedingInputs({ ...feedingInputs, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(feedingInputs);
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      const { title, description, price, link, category } = feedingInputs;
+
+      if (imageUpload && zipUpload) {
+        const config = {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        };
+
+        const postData = await axios.post(
+          `${backendapi}/products`,
+          {
+            title,
+            description,
+            price,
+            link,
+            category,
+            zipfile: zipUpload,
+            pro_image: imageUpload,
+          },
+          config
+        );
+
+        console.log(postData);
+
+        console.log(feedingInputs, imageUpload, zipUpload);
+      } else {
+        alert("Please upload the files");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="feeds">
-      <h1>Feeding</h1>
+      <h1>Add New file</h1>
       <div class="container">
-        <form id="form" class="form" onSubmit={handleSubmit}>
+        <form id="form" className="form" onSubmit={handleSubmit}>
           <div class="form-control">
             <label for="username">Product name</label>
             <input
@@ -36,7 +86,6 @@ const Feeding = () => {
               onChange={handleChange}
               value={feedingInputs.title}
             />
-            <small>Error message</small>
           </div>
           <div class="form-control">
             <label for="Price">Price</label>
@@ -48,7 +97,6 @@ const Feeding = () => {
               onChange={handleChange}
               value={feedingInputs.price}
             />
-            <small>Error message</small>
           </div>
           <div class="form-control">
             <label for="Description">Description</label>
@@ -60,10 +108,9 @@ const Feeding = () => {
               onChange={handleChange}
               value={feedingInputs.description}
             />
-            <small>Error message</small>
           </div>
           <div class="form-control">
-            <label for="avatar">Category</label>
+            <label for="category">Category</label>
             <input
               type="text"
               id="category"
@@ -72,17 +119,26 @@ const Feeding = () => {
               onChange={handleChange}
               value={feedingInputs.category}
             />
-            <small>Error message</small>
           </div>
           <div class="form-control">
-            <label for="avatar">Add Product</label>
+            <label for="avatar">Add Image</label>
             <input
               type="file"
               id="avatar"
               accept="image/png, image/jpeg"
-              name="zipfile"
+              name="avatar"
+              onChange={handleImageUpload}
             />
-            <small>Error message</small>
+          </div>
+          <div class="form-control">
+            <label for="zipfile">Add Zip</label>
+            <input
+              type="file"
+              id="zipfile"
+              name="zipfile"
+              accept=".zip,.rar,.7zip"
+              onChange={handlezipUpload}
+            />
           </div>
           <div class="form-control">
             <label for="link">Add Link</label>
@@ -94,9 +150,8 @@ const Feeding = () => {
               onChange={handleChange}
               value={feedingInputs.link}
             />
-            <small>Error message</small>
           </div>
-          <input type="submit" value={"Submit"} />
+          <input type="submit" value={"Submit"} className="submit_btn" />
           {/* <button type="submit">Submit</button> */}
         </form>
       </div>

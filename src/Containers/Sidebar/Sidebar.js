@@ -5,8 +5,6 @@ import { Link, useParams } from "react-router-dom";
 const Sidebar = () => {
   const { params } = useParams();
 
-  console.log("aaa--->", params);
-
   const [activeTab, setActiveTab] = useState("");
   // setActiveTab(tabName);
 
@@ -35,17 +33,6 @@ const Sidebar = () => {
         <Link to={"/UserList"}>
           <i class="fa-solid fa-user"></i>
           <span>User_list</span>
-        </Link>
-      </li>
-      <li
-        onClick={() => {
-          calling("Statistics");
-        }}
-        className={`${activeTab == "Statistics" && "active"}`}
-      >
-        <Link to={"/Statistics"}>
-          <i class="fa-solid fa-chart-line"></i>
-          <span>Statistics</span>
         </Link>
       </li>
       <li
@@ -79,17 +66,6 @@ const Sidebar = () => {
         <Link to={"/Products"}>
           <i class="fa-solid fa-box-open"></i>
           <span>Products</span>
-        </Link>
-      </li>
-      <li
-        onClick={() => {
-          calling("Logout");
-        }}
-        className={`${activeTab == "Logout" && "active"}`}
-      >
-        <Link to={"/signout"}>
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Logout</span>
         </Link>
       </li>
     </ul>

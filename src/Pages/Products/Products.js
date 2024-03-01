@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Table from "../../Components/Table/Table";
 import axios from "axios";
 import { backendapi } from "../../App";
+import "./Products.css";
 
 const Products = () => {
   const [products_list, setProducts_list] = useState([{}]);
@@ -21,7 +22,8 @@ const Products = () => {
   const newData = products_list.map(({ description, ...rest }) => rest);
 
   return (
-    <div>
+    <div className="products">
+      <h2>Our Avalible Projects</h2>
       <Table data={newData} />
     </div>
   );

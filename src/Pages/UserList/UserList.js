@@ -9,6 +9,7 @@ const UserList = () => {
   useEffect(() => {
     const get_userdata = async () => {
       const { data } = await axios.get(`${backendapi}/users`);
+      console.log("hjdahj", data);
       // await axios.get(`http://localhost:8080/users`);
       setUser_list(data?.data);
     };

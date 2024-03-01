@@ -4,12 +4,11 @@
     row-gap: 15px;
     padding: 11px 0px;
     margin: 0px;
-    background-color: rgb(8, 8, 8);
+    background-color: #262C36;
     box-shadow: 0 1px 8px rgba(0,0,0,.1);
     border-radius:10px;
     height: 96vh;
     align-items: flex-start;
-    border: 1px solid white;
     width: 100%;
 }
 .sidebar_menu li:hover{
