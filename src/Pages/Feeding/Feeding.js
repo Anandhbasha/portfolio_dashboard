@@ -75,7 +75,12 @@ const Feeding = () => {
     <div className="feeds">
       <h1>Add New file</h1>
       <div class="container">
-        <form id="form" className="form" onSubmit={handleSubmit}>
+        <form
+          id="form"
+          className="form"
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
           <div class="form-control">
             <label for="username">Product name</label>
             <input
@@ -90,7 +95,7 @@ const Feeding = () => {
           <div class="form-control">
             <label for="Price">Price</label>
             <input
-              type="text"
+              type="number"
               id="Price"
               placeholder="Enter Price"
               name="price"
@@ -136,7 +141,7 @@ const Feeding = () => {
               type="file"
               id="zipfile"
               name="zipfile"
-              accept=".zip,.rar,.7zip"
+              accept="application/zip, application/x-zip-compressed, multipart/x-zip"
               onChange={handlezipUpload}
             />
           </div>

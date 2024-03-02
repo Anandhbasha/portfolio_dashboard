@@ -19,7 +19,7 @@ const ReportCrads = () => {
     {
       cardTitle: "Free Templates",
       cardValue: 21,
-      cardview: "Veggies",
+      cardview: "Products",
       Report: 10,
       // color: "red",
       image: image2,
@@ -27,7 +27,7 @@ const ReportCrads = () => {
     {
       cardTitle: "Paid Template",
       cardValue: 12,
-      cardview: "Seeds",
+      cardview: "Products",
       Report: 10,
       // color: "yellow",
       image: image3,
@@ -35,7 +35,7 @@ const ReportCrads = () => {
     {
       cardTitle: "Customize Template",
       cardValue: 10,
-      cardview: "Fertilizer",
+      cardview: "Products",
       Report: 10,
       // color: "white",
       image: image4,
@@ -58,10 +58,10 @@ const ReportCrads = () => {
                 </div>
               </div>
               <div className="card_bottom">
-                <button>
-                  <Link to={"/Feeding"}></Link>
-                  Add New
-                </button>
+                <Link to="/Feeding">
+                  {" "}
+                  <button>Add New</button>
+                </Link>
               </div>
             </div>
           </div>
